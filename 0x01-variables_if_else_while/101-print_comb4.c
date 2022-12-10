@@ -1,6 +1,4 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
 
 /**
  * main - print combination of three digits
