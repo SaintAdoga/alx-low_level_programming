@@ -1,45 +1,41 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
- * _atoi - converts a string to an integer.
- * @s: input string.
- * Return: integer.
+ * _atoi - gets sign and numbers of string
+ * @s: array
+ * Return: gets numbers with its sign
  */
 int _atoi(char *s)
 {
-	int i, d, n, len, f, digit;
+	unsigned int cont1 = 0, a, b, c, num = 0, tam;
+	int aux2 = 1;
 
-	i = 0;
-	d = 0;
-	n = 0;
-	len = 0;
-	f = 0;
-	digit = 0;
-
-	while (s[len] != '\0')
-		len++;
-
-	while (i < len && f == 0)
+	while (*(s + cont1) != '\0')
 	{
-		if (s[i] == '-')
-			++d;
-
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			digit = s[i] - '0';
-			if (d % 2)
-				digit = -digit;
-			n = n * 10 + digit;
-			f = 1;
-			if (s[i + 1] < '0' || s[i + 1] > '9')
-				break;
-			f = 0;
-		}
-		i++;
+		cont1++;
 	}
-
-	if (f == 0)
-		return (0);
-
-	return (n);
+	for (a = 0; a < cont1; a++)
+	{
+		if (*(s + a) >= '0' && *(s + a) <= '9')
+			break;
+	}
+	for (b = a; b < cont1; b++)
+	{
+		if (!(*(s + b) >= '0' && *(s + b) <= '9'))
+			break;
+	}
+	for (c = 0; c < a; c++)
+	{
+		if (*(s + c) == '-')
+			aux2 = aux2 * (-1);
+	}
+	tam = b - a;
+	while (tam >= 1)
+	{
+		num = (num * 10) + (*(s + a) - '0');
+		a++;
+		tam--;
+	}
+	num = num * aux2;
+	return (num);
 }
